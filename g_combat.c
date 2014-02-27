@@ -257,9 +257,13 @@ static int CheckArmor (edict_t *ent, vec3_t point, vec3_t normal, int damage, in
 
 	armor = GetItemByIndex (index);
 
-	if (dflags & DAMAGE_ENERGY)
+	if (dflags & DAMAGE_ENERGY && (((gitem_armor_t *)armor->info)->energy_protection<20.0))
 		save = ceil(((gitem_armor_t *)armor->info)->energy_protection*damage);
-	else
+	else if(dflags & DAMAGE_ENERGY && (((gitem_armor_t *)armor->info)->energy_protection>=20.0))
+		save=-1;
+	if( !(dflags & DAMAGE_ENERGY) && (((gitem_armor_t *)armor->info)->normal_protection>=20.0))
+		save=-1;
+	else if( !(dflags & DAMAGE_ENERGY) && (((gitem_armor_t *)armor->info)->normal_protection<20.0))
 		save = ceil(((gitem_armor_t *)armor->info)->normal_protection*damage);
 	if (save >= client->pers.inventory[index])
 		save = client->pers.inventory[index];
@@ -267,7 +271,8 @@ static int CheckArmor (edict_t *ent, vec3_t point, vec3_t normal, int damage, in
 	if (!save)
 		return 0;
 
-	client->pers.inventory[index] -= save;
+	client->pers.inventory[index] -= save+1;
+	if(save==-1) SpawnDamage (te_sparks, point, normal, 0);
 	SpawnDamage (te_sparks, point, normal, save);
 
 	return save;
@@ -354,7 +359,6 @@ qboolean CheckTeamDamage (edict_t *targ, edict_t *attacker)
 		// if ((ability to damage a teammate == OFF) && (targ's team == attacker's team))
 	return false;
 }
-
 void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir, vec3_t point, vec3_t normal, int damage, int knockback, int dflags, int mod)
 {
 	gclient_t	*client;
@@ -452,13 +456,19 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 	}
 
 	psave = CheckPowerArmor (targ, point, normal, take, dflags);
-	take -= psave;
+	if(psave==-1)
+		take=0;
+	else if(psave!=-1)
+		take -= psave;
 
 	asave = CheckArmor (targ, point, normal, take, te_sparks, dflags);
-	take -= asave;
+	if(asave==-1)
+		take=0;
+	else if(asave!=-1)
+		take -= asave;
 
 	//treat cheat/powerup savings the same as armor
-	asave += save;
+	//asave += save;
 
 	// team damage avoidance
 	if (!(dflags & DAMAGE_NO_PROTECTION) && CheckTeamDamage (targ, attacker))
@@ -518,8 +528,6 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 		VectorCopy (point, client->damage_from);
 	}
 }
-
-
 /*
 ============
 T_RadiusDamage

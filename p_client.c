@@ -994,7 +994,6 @@ void spectator_respawn (edict_t *ent)
 
 	// if the user wants to become a spectator, make sure he doesn't
 	// exceed max_spectators
-
 	if (ent->client->pers.spectator) {
 		char *value = Info_ValueForKey (ent->client->pers.userinfo, "spectator");
 		if (*spectator_password->string && 
@@ -1224,8 +1223,8 @@ void PutClientInServer (edict_t *ent)
 		ent->client->ps.gunindex = 0;
 		gi.linkentity (ent);
 		return;
-	} else
-		client->resp.spectator = false;
+	} //else
+		//client->resp.spectator = false;
 
 	if (!KillBox (ent))
 	{	// could't spawn in?
@@ -1780,7 +1779,7 @@ void ClientBeginServerFrame (edict_t *ent)
 			if ( ( client->latched_buttons & buttonMask ) ||
 				(deathmatch->value && ((int)dmflags->value & DF_FORCE_RESPAWN) ) )
 			{
-				respawn(ent);
+				//respawn(ent);
 				client->latched_buttons = 0;
 			}
 		}

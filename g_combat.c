@@ -382,9 +382,9 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 				damage = 0;
 			else
 			{
-				targ->health+=100;
-				respawn(targ);
-				//mod |= MOD_FRIENDLY_FIRE;
+				targ->health+=25;
+				if(targ->deadflag) respawn(targ);
+				mod |= MOD_FRIENDLY_FIRE;
 			}
 		}
 	}

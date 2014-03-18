@@ -6,7 +6,8 @@ Warning: Game Project file has been pgraded ti be compatible with VS2012 and wil
 on earlier versions.  To avoid this situation please download the following files from Git
 
 The recommended game mode for this mod is CTF which will require you to download the Quake II
-CTF patch.  However it works in deathmatch just as well.
+CTF patch.  However it works in team deathmatch just as well.  Friendly Fire must be on in both modes
+in order for the mod to work properly.
 
 Required Files form Git:
 g_combat

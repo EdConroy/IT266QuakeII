@@ -1,11 +1,9 @@
-IT266QuakeII
-============
 Ed Conroy's Jailbreak v0.0.0
 
-Warning: Game Project file has been pgraded ti be compatible with VS2012 and will not work
-on earlier versions.  To avoid this situation please download the following files from Git
+Warning: Game Project file on Git has been upgraded to be compatible with VS2012 and will not work
+on earlier versions.  To avoid this situation please download the following files from Git.
 
-The recommended game mode for this mod is CTF which will require you to download the Quake II
+The recommended game mode for this mod is CTF which will require you to download the Quake II 
 CTF patch.  However it works in team deathmatch just as well.  Friendly Fire must be on in both modes
 in order for the mod to work properly.
 
@@ -16,54 +14,37 @@ p_client
 p_weapon
 g_weapon
 q_shared
+g_utils
 
 Coded Weapons:
 Blaster
-
 Desert Eagle
-
 Baretta
-
-Plasma_Baretta
+Plasma Beretta
 Shotgun
-
 Double Barreled Shotgun
-
 SuperShotgun
 Automatic Shotgun
-
 Machinegun
-
 Rocket Rifle
-
 Plasma Machinegun
-
 Chaingun
-
 Plasma Cannon
-
 HyperBlaster
-
 Rocket Launcher
-
 TriRocket Launcher
 Machine Rocket Launcher
-
 Plasma Rifle
-
 Grenade
-
 Grenade Launcher
-
 Railgun
-
 Tall Boy
 BFG
 
 Available Weapons (Due to overcrowded map concerns and lack of time to learn how to spawn them):
-Plasma Baretta - replaced blaster
+Plasma Beretta - replaced blaster
 Double Barreled Shotgun - replaced shotgun
-Auto Shotty - replaced Super Shotgun
+Auto Shotgun - replaced Super Shotgun
 Rocket Rifle - replaced machinegun
 Plasma Cannon - replaced chaingun
 Plasma Rifle - replaced Rocket Launcher
@@ -74,7 +55,7 @@ Reactive Armor:
 -Body Armor protects against plasma weapons
 
 Jail Mechanics:
--Players once dead can only be revived by their teamates shooting them
+-Players once dead can only be revived by their teammates shooting them
 
 Additional Mechanics:
--Players can heal their teamates by shooting at them
+-Players can heal their teammates by shooting at them
